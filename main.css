@@ -25,14 +25,17 @@ body{
 }
 
 .boxes{
-    padding-top: 48px;
+    background-image: linear-gradient(to bottom, #00062500, #000625);
+    padding: 128px 24px 24px 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 4px #ffffff;
 }
 
 h1{
-    font-family: 'Jost', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    letter-spacing: 24px;
+    font-family: Patroit-Medium;
+    font-weight: 300;
+    font-size: 32px;
+    text-align: left;
     color: #F4F0ED;
     margin: 0;
 }
@@ -66,7 +69,7 @@ h4{
 
 h5{
     font-family: Fuji-Light;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 16px;
     text-align: left;
     color: #F4F0ED;
