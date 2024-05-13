@@ -26,7 +26,6 @@ body{
 
 .boxes{
     background-image: linear-gradient(to bottom, #00062500, #000625);
-    padding: 128px 24px 24px 24px;
     border-radius: 12px;
     box-shadow: 0 0 4px #ffffff;
 }
