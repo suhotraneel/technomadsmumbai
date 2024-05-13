@@ -1,0 +1,93 @@
+@font-face {
+    font-family: Fuji-Medium;
+    src: url(fonts/Fuji-Medium.otf);
+}
+@font-face {
+    font-family: Fuji-Regular;
+    src: url(fonts/Fuji-Regular.otf);
+}
+@font-face {
+    font-family: Fuji-Light;
+    src: url(fonts/Fuji-Light.otf);
+}
+@font-face {
+    font-family: Patroit-Medium;
+    src: url(fonts/Patriot-Medium.otf);
+}
+@font-face {
+    font-family: Patroit-Normal;
+    src: url(fonts/Patriot-Normal.otf);
+}
+
+body{
+    margin: 0;
+    background-color: #1a1a1a;
+}
+
+.boxes{
+    padding-top: 48px;
+}
+
+h1{
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 24px;
+    color: #F4F0ED;
+    margin: 0;
+}
+
+h2{
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: #F4F0ED;
+    margin: 0;
+}
+
+h3{
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
+    color: #F4F0ED;
+    margin: 0;
+}
+
+h4{
+    font-family: Fuji-Medium;
+    font-weight: 100;
+    font-size: 16px;
+    text-align: left;
+    color: #F4F0ED;
+    margin: 0;
+}
+
+h5{
+    font-family: Fuji-Light;
+    font-weight: 300;
+    font-size: 16px;
+    text-align: left;
+    color: #F4F0ED;
+    margin: 0;
+}
+
+p{
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    color: white;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-align: center;
+}
+
+span{
+    font-weight: 300;
+    font-size: 20px;
+}
+
+a{
+    text-decoration: none;
+}
