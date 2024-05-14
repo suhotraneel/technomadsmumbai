@@ -58,7 +58,7 @@ h2{
     font-size: 24px;
     text-align: left;
     color: #F4F0ED;
-    margin: 0;
+    margin-bottom: 8px ;
 }
 
 h4{
@@ -96,76 +96,6 @@ p{
     color: #F4F0ED;
     margin: 0;
 }
-
-#progress {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    background: #5a5a5a;
-    cursor: pointer;
-    border-radius: 2px;
-}
-
-#progress::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background: #F4F0ED;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-}
-
-.controlic {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    margin-top: 32px;
-}
-
-.controlic div {
-    width: 40px;
-    height: 40px;
-    padding: 00px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    transform: scale(1);
-    color:black;
-    margin-right: 16px;
-    width: 40px;
-}
-
-#playicon{
-    background-color: white;
-    color: black;
-    width: 50px;
-}
-
-.controls div:nth-child(2) {
-    transform: scale(1.5);
-}
-
-.photo-gallery{
-    margin-top: 16px;
-    display: flex;
-    gap: 12px;
-}
-
-.column{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.photo img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    padding: 0;
-    border-radius: 8px;
-}
-
 
 /* * {
     margin: 0;
