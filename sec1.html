@@ -25,18 +25,7 @@
         </div>
         </div>
         <div style="padding: 28px 16px 28px 16px;">
-            <a id="dynamicLink" href="">
-                <div class="boxes" style="display: flex; align-items: center;">
-                    <div style="flex: 1;">    
-                        <img id="dynamicImage" src="" style="max-width: 100%; height: auto; border-radius: 6px;" loading="lazy">
-                    </div>
-                    <div id="dynamicContent" style="flex: 1; padding-left: 12px; background-size: cover; background-position: center; border-radius: 12px;">
-                        <h2 id="dynamicTitle"></h2>
-                        <h5 id="dynamicAuthor"></h5>
-                        <h6 id="dynamicID"></h6>
-                    </div>
-                </div>
-            </a>
+            <div id="dynamicContainer"></div>
             <a href="pro1a.html">
                 <div class="boxes" style="display: flex; align-items: center;">
                     <div style="flex: 1;">    
@@ -107,28 +96,73 @@
                 .catch(error => console.error('Error loading data:', error));
         }
 
-        // Function to populate dynamic content
-        function populateDynamicContent(data) {
-            // Assuming data is in the format: [href, src, title, author, id]
-            const [href, src, title, author, id] = data;
+        // Function to create dynamic HTML elements for each record
+        function createDynamicElements(data) {
+            const container = document.getElementById('dynamicContainer');
 
-            // Set href attribute of anchor tag
-            document.getElementById('dynamicLink').href = href;
+            data.forEach(record => {
+                const [href, src, title, author, id] = record;
 
-            // Set src attribute of img tag
-            document.getElementById('dynamicImage').src = src;
+                // Create anchor tag
+                const anchor = document.createElement('a');
+                anchor.href = href;
 
-            // Set text content of dynamic elements
-            document.getElementById('dynamicTitle').textContent = title;
-            document.getElementById('dynamicAuthor').textContent = author;
-            document.getElementById('dynamicID').textContent = id;
+                // Create div for each record
+                const div = document.createElement('div');
+                div.classList.add('boxes');
+                div.style.display = 'flex';
+                div.style.alignItems = 'center';
+
+                // Create image tag
+                const img = document.createElement('img');
+                img.src = src;
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                img.style.borderRadius = '6px';
+                img.setAttribute('loading', 'lazy');
+
+                // Create div for text content
+                const textDiv = document.createElement('div');
+                textDiv.style.flex = '1';
+                textDiv.style.paddingLeft = '12px';
+                textDiv.style.backgroundSize = 'cover';
+                textDiv.style.backgroundPosition = 'center';
+                textDiv.style.borderRadius = '12px';
+
+                // Create h2 tag
+                const h2 = document.createElement('h2');
+                h2.textContent = title;
+
+                // Create h5 tag
+                const h5 = document.createElement('h5');
+                h5.textContent = author;
+
+                // Create h6 tag
+                const h6 = document.createElement('h6');
+                h6.textContent = id;
+
+                // Append elements to text div
+                textDiv.appendChild(h2);
+                textDiv.appendChild(h5);
+                textDiv.appendChild(h6);
+
+                // Append elements to div
+                div.appendChild(img);
+                div.appendChild(textDiv);
+
+                // Append div to anchor tag
+                anchor.appendChild(div);
+
+                // Append anchor tag to container
+                container.appendChild(anchor);
+            });
         }
 
         // URL of the CSV file containing the data
         const csvFile = 'theme1.csv';
 
-        // Load data from CSV file and populate dynamic content
-        loadDataFromCSV(csvFile, populateDynamicContent);
+        // Load data from CSV file and create dynamic elements
+        loadDataFromCSV(csvFile, createDynamicElements);
     </script>
 </body>
 </html>
