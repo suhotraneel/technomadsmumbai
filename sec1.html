@@ -113,6 +113,10 @@
                 div.style.display = 'flex';
                 div.style.alignItems = 'center';
 
+                // Create div for image content
+                const imageDiv = document.createElement('div');
+                imageDiv.style.flex = '1';
+
                 // Create image tag
                 const img = document.createElement('img');
                 img.src = src;
@@ -120,6 +124,8 @@
                 img.style.height = 'auto';
                 img.style.borderRadius = '6px';
                 img.setAttribute('loading', 'lazy');
+
+                imageDiv.appendChild(img);
 
                 // Create div for text content
                 const textDiv = document.createElement('div');
