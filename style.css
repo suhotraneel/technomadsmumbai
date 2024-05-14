@@ -20,11 +20,17 @@
 }
 
 body{
-    background-image: url('desimg/motif1.png');
+    background-image: url('desimg/motif1.jpg');
     background-size: 100% auto;
     background-position: top;
     margin: 0;
     background-color: #1a1a1a;
+}
+
+.boxes{
+    background-color: #000000CC;
+    border-radius: 12px;
+    padding: 12px;
 }
 
 #titlehead {
@@ -37,7 +43,7 @@ body{
 }
 
 header {
-    margin: 0 16px 32px 16px;
+    padding: 28px 28px 28px 28px;
 }
 
 a{
