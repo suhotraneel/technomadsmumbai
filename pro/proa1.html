@@ -47,33 +47,36 @@
     </div>
 
     <script>
-        document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
+        function loadCSV() {
+            fetch('data.csv') // Fetch the CSV file
+                .then(response => response.text()) // Parse the response as text
+                .then(data => {
+                    const rows = data.split('\n'); // Split the data into rows
+                    const table = document.getElementById('data-table'); // Get the table element
 
-        function handleFileSelect(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
+                    // Loop through each row of the CSV data
+                    rows.forEach((row, index) => {
+                        if (index !== 0) { // Skip the header row
+                            const columns = row.split(','); // Split the row into columns
 
-        reader.onload = function(event) {
-            const csv = event.target.result;
-            const lines = csv.split('\n');
-
-            lines.forEach(line => {
-            const [prev, next, tit, dept, auth, desp, imag, aud] = line.split(',');
-
-            // Update existing elements with data from CSV
-            document.getElementById('prev').href = prev;
-            document.getElementById('next').href = next;
-            document.getElementById('tit').textContent = tit;
-            document.getElementById('dept').textContent = dept;
-            document.getElementById('auth').textContent = auth;
-            document.getElementById('desp').textContent = desp;
-            document.getElementById('imag').src = imag;
-            document.getElementById('aud').src = aud;
-            });
-        };
-
-        reader.readAsText(file);
+                            // Update the corresponding HTML table row with data from CSV
+                            const tableRow = table.rows[index];
+                            document.getElementById('prev').href = columns[0]; // Update Name
+                            document.getElementById('next').href = columns[0]; // Update Name
+                            document.getElementById('tit').href = columns[0]; // Update Name
+                            document.getElementById('dept').href = columns[0]; // Update Name
+                            document.getElementById('auth').href = columns[0]; // Update Name
+                            document.getElementById('desp').href = columns[0]; // Update Name
+                            document.getElementById('imag').href = columns[0]; // Update Name
+                            document.getElementById('aud').href = columns[0]; // Update Name
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading CSV:', error));
         }
+
+        // Call the function to load CSV data when the page loads
+        window.onload = loadCSV;
     </script>
 </body>
 </html>
