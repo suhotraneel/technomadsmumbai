@@ -89,30 +89,11 @@
             
         }
 
-        // Event listeners for buttons
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            if (currentIndex < records.length - 1) {
-                currentIndex++;
-                updateContent();
-            }
-        });
-
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateContent();
-            }
-        });
-
-        // Placeholder function for play/pause
-        function playPause() {
-            alert("Play/Pause clicked!");
-        }
-
         // Load data on page load
         window.onload = () => {
-            loadData('theme1.csv');
+            loadData('data.csv');
         };
+
     </script>
 
     <script>
