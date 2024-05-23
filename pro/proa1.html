@@ -47,6 +47,75 @@
     </div>
 
     <script>
+        let currentIndex = 0;
+        let records = [];
+
+        // Load data from CSV file
+        async function loadData(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const rows = text.trim().split('\n').map(row => row.split(','));
+                records = rows.map(row => ({
+                    prev: row[0],
+                    next: row[1],
+                    tit: row[2],
+                    dept: row[3],
+                    auth: row[4],
+                    desp: row[5],
+                    imag: row[6],
+                    aud: row[7]
+                }));
+                updateContent();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Update content based on current index
+        function updateContent() {
+            if (records.length === 0) return;
+            const record = records[currentIndex];
+            document.getElementById('prev').href = record.prev;
+            document.getElementById('next').href = record.next;
+            document.getElementById('tit').textContent = record.tit;
+            document.getElementById('dept').textContent = record.dept;
+            document.getElementById('auth').textContent = record.auth;
+            document.getElementById('desp').textContent = record.desp;
+            document.getElementById('imag').src = record.imag;
+            document.getElementById('aud').src = record.aud;
+            
+            
+            
+        }
+
+        // Event listeners for buttons
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentIndex < records.length - 1) {
+                currentIndex++;
+                updateContent();
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateContent();
+            }
+        });
+
+        // Placeholder function for play/pause
+        function playPause() {
+            alert("Play/Pause clicked!");
+        }
+
+        // Load data on page load
+        window.onload = () => {
+            loadData('theme1.csv');
+        };
+    </script>
+
+    <script>
         let progress = document.getElementById("progress");
         let song = document.getElementById("song");
         let ctrlIcon = document.getElementById("ctrlIcon");

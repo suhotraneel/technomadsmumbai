@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="prostyle.css">
+    <script src="https://kit.fontawesome.com/a3ffbb974d.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../logosq.png" type="image/x-icon">
+    <title>Alternative Identification - Tech Nomads</title>
+</head>
+<body style="background-image: url('../desimg/theme1.jpg'); background-size: cover;">
+    <div style="background-color: #000000CC;">
+        <div style="padding: 28px 28px 0px 28px;">
+            <div class="container">
+                <a href="../seca.html"><div class="left-aligned"><img src="../back.svg" alt="back" style="max-width: 100%;" height="18px"></div></a>
+                <div class="center-aligned"><h2>ALTERNATIVE IDENTIFICATION</h2></div>
+                <div style="margin-left: 24.3px;"></div>
+            </div>
+            <img src="" id="imag" alt="" style="max-width: 100%; height: auto; border-radius: 6px; margin-top: 28px;">
+            <div style="margin: 24px 0px 0px 0px"><h1 id="tit">Mosaic Lane</h1></div>
+            <h6 id="dept" style="margin: 4px 0px 8px 0px; text-align: center;">Communication Design</h6>
+        </div>
+        <div style="padding: 14px 28px 28px 28px;">
+            <input type="range" value="0" id="progress">
+            <audio id="song">
+                <source src="" id="aud" type="audio/mpeg">
+            </audio>
+            <div class="controlic">
+                <a href="" id="prev"><img src="../previous.svg" style="margin: 14px 28px 0px 0px; opacity: 0.75;" alt="previous"></a>
+                <div id="playicon" onClick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                <a href="" id="next"><img src="../next.svg" style="margin: 14px 0px 0px 28px; opacity: 0.75;" alt="next"></a>
+            </div>
+            <div style="margin-top: 48px; padding: 16px; background-color: #ffffffCC; border-radius: 16px; ">
+            <h4 id="auth" style="margin-bottom: 16px; color: #000000;">Suhotra Chakraborty</h4>
+            <p id="desp" style="margin-bottom: 16px; color: #000000;">
+                His intense allegorical and linguistic turns resonate with Vivek Vilasini’s large-format photograph Before one shore and several others (After Michelangelo’s Creations). His intense allegorical and linguistic turns resonate with Vivek Vilasini’s large-format photograph Before one shore and several others (After Michelangelo’s Creations)His intense allegorical and linguistic turns resonate with Vivek Vilasini’s large-format photograph Before one shore and several others (After Michelangelo’s Creations)
+            </p>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 16px 28px 16px 28px; display: flex; align-items: center ; justify-content: space-between;">
+        <div>
+            <h4>AV Experience:</h4>
+            <h5>Suhotra Chakraborty, <br>Ajinkya Satam & Mansha Jejani</h5>
+        </div>
+        <img src="../logo.png" alt="Portfolio 2024" style="height: 32px">
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let records = [];
+
+        // Load data from CSV file
+        async function loadData(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                const rows = text.trim().split('\n').map(row => row.split(','));
+                records = rows.map(row => ({
+                    prev: row[0],
+                    next: row[1],
+                    tit: row[2],
+                    dept: row[3],
+                    auth: row[4],
+                    desp: row[5],
+                    imag: row[6],
+                    aud: row[7]
+                }));
+                updateContent();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Update content based on current index
+        function updateContent() {
+            if (records.length === 0) return;
+            const record = records[currentIndex];
+            document.getElementById('prev').href = record.prev;
+            document.getElementById('next').href = record.next;
+            document.getElementById('tit').textContent = record.tit;
+            document.getElementById('dept').textContent = record.dept;
+            document.getElementById('auth').textContent = record.auth;
+            document.getElementById('desp').textContent = record.desp;
+            document.getElementById('imag').src = record.imag;
+            document.getElementById('aud').src = record.aud;
+            
+            
+            
+        }
+
+        // Event listeners for buttons
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentIndex < records.length - 1) {
+                currentIndex++;
+                updateContent();
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateContent();
+            }
+        });
+
+        // Placeholder function for play/pause
+        function playPause() {
+            alert("Play/Pause clicked!");
+        }
+
+        // Load data on page load
+        window.onload = () => {
+            loadData('theme1.csv');
+        };
+    </script>
+
+    <script>
+        let progress = document.getElementById("progress");
+        let song = document.getElementById("song");
+        let ctrlIcon = document.getElementById("ctrlIcon");
+
+        song.onloadedmetadata = function(){
+            progress.max = song.duration;
+            progress.value = song.currentTime;
+
+        }
+
+        function playPause() {
+            if(ctrlIcon.classList.contains("fa-pause")) {
+                song.pause();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+            }
+            else{
+                song.play();
+                ctrlIcon.classList.add("fa-pause");
+                ctrlIcon.classList.remove("fa-play");
+            }
+        }
+
+        if(song.play()) {
+            setInterval(()=>{
+                progress.value = song.currentTime;
+            },500);
+        }
+
+        progress.onchange = function(){
+            song.play();
+            song.currentTime = progress.value;
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+        }
+    </script>
+</body>
+</html>
