@@ -47,53 +47,33 @@
     </div>
 
     <script>
-        let currentIndex = 0;
-        let records = [];
+       document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
 
-        // Load data from CSV file
-        async function loadData(url) {
-            try {
-                const response = await fetch(url);
-                const text = await response.text();
-                const rows = text.trim().split('\n').map(row => row.split(','));
-                records = rows.map(row => ({
-                    prev: row[0],
-                    next: row[1],
-                    tit: row[2],
-                    dept: row[3],
-                    auth: row[4],
-                    desp: row[5],
-                    imag: row[6],
-                    aud: row[7]
-                }));
-                updateContent();
-            } catch (error) {
-                console.error('Error loading data:', error);
-            }
-        }
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
 
-        // Update content based on current index
-        function updateContent() {
-            if (records.length === 0) return;
-            const record = records[currentIndex];
-            document.getElementById('prev').href = record.prev;
-            document.getElementById('next').href = record.next;
-            document.getElementById('tit').textContent = record.tit;
-            document.getElementById('dept').textContent = record.dept;
-            document.getElementById('auth').textContent = record.auth;
-            document.getElementById('desp').textContent = record.desp;
-            document.getElementById('imag').src = record.imag;
-            document.getElementById('aud').src = record.aud;
-            
-            
-            
-        }
+  reader.onload = function(event) {
+    const csv = event.target.result;
+    const lines = csv.split('\n');
 
-        // Load data on page load
-        window.onload = () => {
-            loadData('data.csv');
-        };
+    lines.forEach(line => {
+      const [prev, next, tit, dept, auth, desp, imag, aud] = line.split(',');
 
+      // Update existing elements with data from CSV
+      document.getElementById('prev').href = prev;
+      document.getElementById('next').href = next;
+      document.getElementById('tit').textContent = tit;
+      document.getElementById('dept').textContent = dept;
+      document.getElementById('auth').textContent = auth;
+      document.getElementById('desp').textContent = desp;
+      document.getElementById('imag').src = imag;
+      document.getElementById('aud').src = aud;
+    });
+  };
+
+  reader.readAsText(file);
+}
     </script>
 
     <script>
