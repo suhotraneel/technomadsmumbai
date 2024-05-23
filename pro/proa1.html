@@ -33,7 +33,7 @@
             <div style="margin-top: 48px; padding: 16px; background-color: #ffffffCC; border-radius: 16px; ">
             <h4 id="auth" style="margin-bottom: 16px; color: #000000;">Suhotra Chakraborty</h4>
             <p id="desp" style="margin-bottom: 16px; color: #000000;">
-                
+                retsdhrftgyk
             </p>
             </div>
         </div>
@@ -47,35 +47,33 @@
     </div>
 
     <script>
-       document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
+        document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
 
-function handleFileSelect(event) {
-  const file = event.target.files[0];
-  const reader = new FileReader();
+        function handleFileSelect(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
 
-  reader.onload = function(event) {
-    const csv = event.target.result;
-    const lines = csv.split('\n');
+        reader.onload = function(event) {
+            const csv = event.target.result;
+            const lines = csv.split('\n');
 
-    lines.forEach(line => {
-      const [prev, next, tit, dept, auth, desp, imag, aud] = line.split(',');
+            lines.forEach(line => {
+            const [prev, next, tit, dept, auth, desp, imag, aud] = line.split(',');
 
-      // Update existing elements with data from CSV
-      document.getElementById('prev').href = prev;
-      document.getElementById('next').href = next;
-      document.getElementById('tit').textContent = tit;
-      document.getElementById('dept').textContent = dept;
-      document.getElementById('auth').textContent = auth;
-      document.getElementById('desp').textContent = desp;
-      document.getElementById('imag').src = imag;
-      document.getElementById('aud').src = aud;
-    });
-  };
+            // Update existing elements with data from CSV
+            document.getElementById('prev').href = prev;
+            document.getElementById('next').href = next;
+            document.getElementById('tit').textContent = tit;
+            document.getElementById('dept').textContent = dept;
+            document.getElementById('auth').textContent = auth;
+            document.getElementById('desp').textContent = desp;
+            document.getElementById('imag').src = imag;
+            document.getElementById('aud').src = aud;
+            });
+        };
 
-  reader.readAsText(file);
-}
+        reader.readAsText(file);
+        }
     </script>
-
-    
 </body>
 </html>
