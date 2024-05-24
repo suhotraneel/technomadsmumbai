@@ -54,7 +54,7 @@
             .then(csvData => {
                 // Parse CSV data
                 const csvRows = csvData.split('\n');
-                const fourthRecord = csvRows[3]; // Getting the 4th record (index 3)
+                const fourthRecord = csvRows[0]; // Getting the 4th record (index 3)
                 const rowData = fourthRecord.split(',');
 
                 // Update HTML content
