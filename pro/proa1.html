@@ -48,28 +48,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    // Fetch the CSV file
-    fetch('data.csv')
-    .then(response => response.text())
-    .then(csvData => {
-        // Parse CSV data
-        const csvRows = csvData.split('\n');
-        const fourthRecord = csvRows[3]; // Getting the 4th record (index 3)
-        const rowData = fourthRecord.split(',');
+            // Fetch the CSV file
+            fetch('theme1.csv')
+            .then(response => response.text())
+            .then(csvData => {
+                // Parse CSV data
+                const csvRows = csvData.split('\n');
+                const fourthRecord = csvRows[3]; // Getting the 4th record (index 3)
+                const rowData = fourthRecord.split(',');
 
-        // Update HTML content
-        const titm = document.getElementById('tit');
-        const paragraph2 = document.getElementById('paragraph2');
-        const image = document.getElementById('image');
+                // Update HTML content
+                const prevm = document.getElementById('prev');
+                const nextm = document.getElementById('next');
+                const titm = document.getElementById('tit');
+                const deptm = document.getElementById('dept');
+                const authm = document.getElementById('auth');
+                const despm = document.getElementById('desp');
+                const imagm = document.getElementById('imag');
+                const audm = document.getElementById('aud');
 
-        // Update paragraph content
-        titm.innerText = rowData[2];
-        paragraph2.innerText = rowData[1];
-        // Update image source and alt text
-        image.src = rowData[2];
-    })
-    .catch(error => console.error('Error fetching CSV:', error));
-});
+                // Update paragraph content
+                prevm.setAttribute('href', rowData[0]);
+                nextm.setAttribute('href', rowData[1]);
+                titm.innerText = rowData[2];
+                deptm.innerText = rowData[3];
+                authm.innerText = rowData[4];
+                despm.innerText = rowData[5];
+                imagm.src = rowData[6];
+                audm.src = rowData[7];
+                // Update image source and alt text
+            })
+            .catch(error => console.error('Error fetching CSV:', error));
+        });
 
 
 
